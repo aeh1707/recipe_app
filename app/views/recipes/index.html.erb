@@ -3,7 +3,7 @@
 <div id="recipes">
   <% @recipes.each do |recipe| %>
     <%= render recipe %>
-    <div class="recipeMainBox">
+    <a href="/users/<%= recipe.user_id %>/recipes/<%= recipe.id %>" class="recipeMainBox">
       <div class="leftSideRecipe">
         <h1><%= recipe.name %></h1>
         <button type="button">REMOVE</button>
@@ -12,7 +12,7 @@
       <div class="rightSideRecipe">
         <p><%= recipe.description %></p>
       </div>
-    </div>
+    </a>
   <% end %>
 </div>
 

@@ -14,6 +14,8 @@ body {
 
 .recipeMainBox {
     display: flex;
+    text-decoration: none;
+    color: black;
     width: 75%;
     align-items: center;
     border: 2px solid black;
