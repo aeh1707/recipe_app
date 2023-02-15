@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#recipes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5rem;
+    gap: 10%;
+}
+
+.recipeMainBox {
+    display: flex;
+    width: 75%;
+    align-items: center;
+    border: 2px solid black;
+    gap: 5%;
+    padding: 1%;
+}
+
+.leftSideRecipe {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.rightSideRecipe {
+    width: 70%;
+}
