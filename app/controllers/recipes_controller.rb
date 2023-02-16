@@ -10,8 +10,8 @@ class RecipesController < ApplicationController
   # GET /recipes/1 or /recipes/1.json
   def show
     @recipe = Recipe.find(params[:id].to_i)
-    @recipe_foods = RecipeFood.where(recipe_id: @recipe.id, user_id: @recipe.user_id)
-    @foods = Food.includes(:recipe_foods)
+    @recipe_foods = RecipeFood.where(recipe_id: @recipe.id)
+    @foods = Food.includes(:recipe_foods).where(recipe_foods: {id: @recipe_foods.pluck(:id)})
   end
 
   # GET /recipes/new
@@ -24,16 +24,16 @@ class RecipesController < ApplicationController
 
   # POST /recipes or /recipes.json
   def create
-    @recipe = Recipe.new(recipe_params)
+    @new_recipe = params.require(:recipe).permit(:name, :description, :prep_time, :cook_time, :public)
+    @recipe = Recipe.new(user: current_user, name: @new_recipe[:name], description: @new_recipe[:description],
+                         prep_time: @new_recipe[:prep_time], cook_time: @new_recipe[:cook_time], public: @new_recipe[:public])
 
-    respond_to do |format|
-      if @recipe.save
-        format.html { redirect_to recipe_url(@recipe), notice: 'Recipe was successfully created.' }
-        format.json { render :show, status: :created, location: @recipe }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @recipe.errors, status: :unprocessable_entity }
-      end
+    if @recipe.save
+      flash[:success] = 'Recipe created succefully!'
+      redirect_to user_recipes_path
+    else
+      flash[:error] = 'The post couldn\'t be created!'
+      redirect_to user_recipes_path
     end
   end
 

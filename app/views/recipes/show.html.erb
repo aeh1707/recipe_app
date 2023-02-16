@@ -31,10 +31,12 @@
       <th>Actions</th>
     </tr>
     <% @foods.each do |food| %>
-      <td><%= food.name %></td>
-      <td><%= food.quantity %></td>
-      <td><%= food.measurement_unit %></td>
-      <td><button type="button">REMOVE</button></td>
+      <tr>
+        <td><%= food.name %></td>
+        <td><%= food.quantity %></td>
+        <td><%= food.measurement_unit %></td>
+        <td><button type="button">REMOVE</button></td>
+      </tr>
     <% end %>
   </table>
   
