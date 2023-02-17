@@ -1,5 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
+<%= flash[:success] %>
+<%= flash[:error] %>
+
 <div id="recipes">
   <% @recipes.each do |recipe| %>
     <%= render recipe %>
