@@ -1,14 +1,11 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Foods</h1>
-
+<div class="d-flex justify-content-center" style="margin-bottom: 20px;">
+  <%= link_to "Add Food", new_food_path, class:"btn btn-primary" %>
+</div>
 <div id="foods">
   <% @foods.each do |food| %>
     <%= render food %>
-    <p>
-    <%= food.name %>
-    <%= food.user_id %>
-    </p>
   <% end %>
 </div>
+
 

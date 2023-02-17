@@ -1,13 +1,9 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: %i[show edit update destroy]
 
-  # GET /foods or /foods.json
   def index
     @foods = Food.all
   end
-
-  # GET /foods/1 or /foods/1.json
-  def show; end
 
   # GET /foods/new
   def new
@@ -19,35 +15,19 @@ class FoodsController < ApplicationController
 
   # POST /foods or /foods.json
   def create
-    @new_food = params.require(:food).permit(:name, :measurement_unit, :price, :quantity)
-    @food = Food.new(user: current_user, name: @new_food[:name], measurement_unit: @new_food[:measurement_unit],
-                     price: @new_food[:price], quantity: @new_food[:quantity])
+    @food = Food.new(food_params)
 
     respond_to do |format|
       if @food.save
-        format.html { redirect_to user_recipes_path, notice: 'Food was successfully created.' }
-        format.json { render :show, status: :created, location: @food }
+        format.html { redirect_to foods_url(current_user), notice: 'Food was successfully created.' }
+        # format.json { render :show, status: :created, location: @food }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @food.errors, status: :unprocessable_entity }
+        # format.json { render json: @food.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # PATCH/PUT /foods/1 or /foods/1.json
-  def update
-    respond_to do |format|
-      if @food.update(food_params)
-        format.html { redirect_to food_url(@food), notice: 'Food was successfully updated.' }
-        format.json { render :show, status: :ok, location: @food }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @food.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /foods/1 or /foods/1.json
   def destroy
     @food.destroy
 
@@ -59,13 +39,12 @@ class FoodsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_food
     @food = Food.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
   def food_params
-    params.fetch(:food, {})
+    params.require(:food).permit(:name, :price, :measurement_unit, :quantity, :user_id)
   end
 end
