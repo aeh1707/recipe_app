@@ -33,7 +33,7 @@
     <% @foods.each do |food| %>
       <tr>
         <td><%= food.name %></td>
-        <td><%= food.quantity %></td>
+        <td><%= @recipe_foods[0].quantity %></td>
         <td><%= food.measurement_unit %></td>
         <td><button type="button">REMOVE</button></td>
       </tr>
