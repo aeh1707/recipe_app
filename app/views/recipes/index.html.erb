@@ -1,14 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Recipes</h1>
+<%= flash[:success] %>
+<%= flash[:error] %>
 
 <div id="recipes">
   <% @recipes.each do |recipe| %>
     <%= render recipe %>
-    <p>
-      <%= link_to "Show this recipe", recipe %>
-    </p>
+    <a href="/recipes/<%= recipe.id %>" class="recipeMainBox">
+      <div class="leftSideRecipe">
+        <h1><%= recipe.name %></h1>
+        <button type="button">REMOVE</button>
+      </div>
+
+      <div class="rightSideRecipe">
+        <p><%= recipe.description %></p>
+      </div>
+    </a>
   <% end %>
+  <button class="backToRecipes"><%= link_to "Add new recipes", new_recipe_path %></button>
 </div>
 
-<%= link_to "New recipe", new_recipe_path %>

@@ -6,9 +6,9 @@
   <% @foods.each do |food| %>
     <%= render food %>
     <p>
-      <%= link_to "Show this food", food %>
+    <%= food.name %>
+    <%= food.user_id %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New food", new_food_path %>

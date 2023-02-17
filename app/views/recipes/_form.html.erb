@@ -12,6 +12,12 @@
   <% end %>
 
   <div>
-    <%= form.submit %>
+    <%= form.text_field :name, :placeholder => placeholder="Name" %>
+    <%= form.text_area :description, :placeholder => placeholder="Description" %>
+    <%= form.number_field :prep_time, :placeholder => placeholder="Preparation Time (in minutes to the nearest whole number)" %>
+    <%= form.number_field :cook_time, :placeholder => placeholder="Cook Time (in minutes to the nearest whole number)" %>
+    <%= form.check_box :public %>
+    <%= form.hidden_field :user_id, value: params[:user_id] %>
+    <%= form.submit 'Submit' %>
   </div>
 <% end %>
