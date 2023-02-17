@@ -4,6 +4,6 @@ class Food < ApplicationRecord
   validates :measurement_unit, presence: true
   validates :quantity, comparison: { only_integer: true, greater_than_or_equal_to: 0 }
 
-  belongs_to :recipe_food
+  has_many :recipe_foods
   belongs_to :user
 end

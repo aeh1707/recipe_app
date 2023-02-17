@@ -24,14 +24,17 @@ class RecipesController < ApplicationController
 
   # POST /recipes or /recipes.json
   def create
-    @recipe = Recipe.new(recipe_params)
+    @new_recipe = params.require(:recipe).permit(:name, :description, :prep_time, :cook_time, :public, :user_id)
+    @recipe = Recipe.new(user: current_user, name: @new_recipe[:name], description: @new_recipe[:description],
+                         prep_time: @new_recipe[:prep_time], cook_time: @new_recipe[:cook_time],
+                         public: @new_recipe[:public])
 
     if @recipe.save
       flash[:success] = 'Recipe created succefully!'
     else
       flash[:error] = 'The post couldn\'t be created!'
     end
-    redirect_to user_recipes_path
+    redirect_to user_recipes_path(@recipe.user_id)
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json
@@ -66,6 +69,6 @@ class RecipesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def recipe_params
-    params.require(:recipe).permit(:name, :description, :prep_time, :cook_time, :public, :user_id)
+    params.fetch(:recipe, {})
   end
 end
