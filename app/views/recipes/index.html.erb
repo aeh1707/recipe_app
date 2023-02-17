@@ -6,7 +6,7 @@
 <div id="recipes">
   <% @recipes.each do |recipe| %>
     <%= render recipe %>
-    <a href="/users/<%= recipe.user_id %>/recipes/<%= recipe.id %>" class="recipeMainBox">
+    <a href="/recipes/<%= recipe.id %>" class="recipeMainBox">
       <div class="leftSideRecipe">
         <h1><%= recipe.name %></h1>
         <button type="button">REMOVE</button>
@@ -17,5 +17,6 @@
       </div>
     </a>
   <% end %>
+  <button class="backToRecipes"><%= link_to "Add new recipes", new_recipe_path %></button>
 </div>
 

@@ -3,8 +3,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes or /recipes.json
   def index
-    @user = User.find(params[:user_id].to_i)
-    @recipes = Recipe.where(user: @user)
+    @recipes = Recipe.where(user: current_user)
   end
 
   # GET /recipes/1 or /recipes/1.json
@@ -34,7 +33,7 @@ class RecipesController < ApplicationController
     else
       flash[:error] = 'The post couldn\'t be created!'
     end
-    redirect_to user_recipes_path(@recipe.user_id)
+    redirect_to recipes_path
   end
 
   # PATCH/PUT /recipes/1 or /recipes/1.json

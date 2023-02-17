@@ -12,7 +12,7 @@ class RecipeFoodsController < ApplicationController
     @recipe_food = RecipeFood.new(recipe_food_params)
 
     if @recipe_food.save
-      redirect_to user_recipes_path(params[:user_id])
+      redirect_to recipe_path(id: params[:recipe_id])
     end
   end
 
