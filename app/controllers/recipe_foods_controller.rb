@@ -11,9 +11,9 @@ class RecipeFoodsController < ApplicationController
   def create
     @recipe_food = RecipeFood.new(recipe_food_params)
 
-    if @recipe_food.save
-      redirect_to recipe_path(id: params[:recipe_id])
-    end
+    return unless @recipe_food.save
+
+    redirect_to recipe_path(id: params[:recipe_id])
   end
 
   # PATCH/PUT /recipe_foods/1 or /recipe_foods/1.json

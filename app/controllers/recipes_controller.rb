@@ -31,7 +31,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       flash[:success] = 'Recipe created succefully!'
     else
-      flash[:error] = 'The post couldn\'t be created!'
+      flash[:error] = 'The recipe couldn\'t be created!'
     end
     redirect_to recipes_path
   end
