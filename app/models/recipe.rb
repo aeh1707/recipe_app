@@ -6,4 +6,9 @@ class Recipe < ApplicationRecord
   validates :public, inclusion: [true, false]
   has_many :recipe_foods
   belongs_to :user
+  has_many :foods, through: :recipe_foods
+
+  def total_price
+    total = 0
+  end
 end
