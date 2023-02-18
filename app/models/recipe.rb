@@ -6,11 +6,11 @@ class Recipe < ApplicationRecord
   validates :public, inclusion: [true, false]
   has_many :recipe_foods
   belongs_to :user
-<<<<<<< HEAD
 
   def self.public_recipes
     where(public: true)
-=======
+  end
+
   has_many :foods, through: :recipe_foods
 
   def missing_foods
@@ -26,6 +26,5 @@ class Recipe < ApplicationRecord
       data[:total_price] += recipe_food.food.price
     end
     data
->>>>>>> 4b1887ff74819e270803283e6e582b77f5e7ddad
   end
 end
