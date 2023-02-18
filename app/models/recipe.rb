@@ -6,4 +6,8 @@ class Recipe < ApplicationRecord
   validates :public, inclusion: [true, false]
   has_many :recipe_foods
   belongs_to :user
+
+  def self.public_recipes
+    where(public: true)
+  end
 end
