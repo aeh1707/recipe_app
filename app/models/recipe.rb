@@ -5,7 +5,13 @@ class Recipe < ApplicationRecord
   validates :cook_time, comparison: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :public, inclusion: [true, false]
   has_many :recipe_foods
+  has_many :foods, through: :recipe_foods
   belongs_to :user
+
+  def self.public_recipes
+    where(public: true)
+  end
+
   has_many :foods, through: :recipe_foods
 
   def missing_foods

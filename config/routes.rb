@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :general_shopping_lists, only: [:index]
   resources :recipe_foods, only: [:destroy]
   resources :foods, except: [:update]
+  resources :public_recipes, only: [:index]
   # Defines the root path route ("/")
   root "recipes#index"
 end
