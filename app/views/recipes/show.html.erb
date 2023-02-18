@@ -1,4 +1,5 @@
 <p style="color: green"><%= notice %></p>
+<%= flash[:success] %>
 
 <%= render @recipe %>
 
@@ -19,7 +20,7 @@
     </div>
   </div>
   <div class="recipeListButtons">
-    <button class="backToRecipes" type="button">Generate shopping list</button>
+    <button class="backToRecipes" type="button"><%= link_to "Generate Shopping List", general_shopping_lists_path %></button>
     <button class="backToRecipes" type="button"><%= link_to "Add ingredient", new_recipe_recipe_food_path(recipe_id: params[:id]) %></button>
   </div>
   <hr class="horizonatalLine">
@@ -30,12 +31,12 @@
       <th>Value</th>
       <th>Actions</th>
     </tr>
-    <% @foods.each do |food| %>
+    <% @recipe_foods.each do |food| %>
       <tr>
-        <td><%= food.name %></td>
-        <td><%= @recipe_foods[0].quantity %></td>
-        <td><%= food.measurement_unit %></td>
-        <td><button type="button">REMOVE</button></td>
+        <td><%= food.food.name %></td>
+        <td><%= food.quantity %></td>
+        <td><%= food.food.measurement_unit %></td>
+        <td><%= button_to "Delete", recipe_food_path(food), method: :delete, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </table>
