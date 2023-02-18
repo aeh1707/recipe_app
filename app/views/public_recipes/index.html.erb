@@ -1,0 +1,12 @@
+<% @public_recipes.each do |recipe| %>
+  <a href="/recipes/<%= recipe.id %>" style= "text-decoration: none; color: black;" >
+  <div id="recipes">
+    <div class="recipe border d-flex flex-row justify-content-center align-items-center">
+      <h2 style="margin: 30px"><%= recipe.name %></h2>
+      <p style="margin: 30px">By <%= User.find(recipe.user_id).name %></p>
+      <p style="margin: 30px">Total food items: <%= recipe.foods.count %></p>
+      <p style="margin: 30px">Total price: <%= recipe.foods.sum { |food| food.quantity * food.price } %></p>
+    </div>
+  </div>
+  </a>
+<% end %>

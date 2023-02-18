@@ -1,0 +1,52 @@
+<p style="color: green"><%= notice %></p>
+<%= flash[:success] %>
+
+<%= render @recipe %>
+
+<div id="recipes">
+  <h1><%= @recipe.name %></h1>
+  <div class="topBoxRecipeList">
+    <div class="leftSideRecipeList">
+      <p>Preparation time (in minutes): <%= @recipe.prep_time %></p>
+      <p>Cooking time (in minutes): <%= @recipe.cook_time %></p> 
+    </div>
+
+    <div class="rightSideRecipeList">
+      <span>Public </span>
+      <label class="switch">
+        <%= check_box_tag 'is_checked', '1', @recipe.public %>
+        <span class="slider round"></span>
+      </label>
+    </div>
+  </div>
+  <div class="recipeListButtons">
+    <button class="backToRecipes" type="button"><%= link_to "Generate Shopping List", general_shopping_lists_path %></button>
+    <button class="backToRecipes" type="button"><%= link_to "Add ingredient", new_recipe_recipe_food_path(recipe_id: params[:id]) %></button>
+  </div>
+  <hr class="horizonatalLine">
+  <table class="tableRecipeList">
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th>Actions</th>
+    </tr>
+    <% @recipe_foods.each do |food| %>
+      <tr>
+        <td><%= food.food.name %></td>
+        <td><%= food.quantity %> <%= food.food.measurement_unit %></td>
+        <td><%= "$" + food.food.price.to_s %></td>
+        <td>
+        <div class="recipeshowButtons">
+          <button class="btn btn-primary">Modify</button>
+          <%= button_to "Delete", recipe_food_path(food), method: :delete, class: "btn btn-danger" %>
+        <div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  
+  <button class="backToRecipes"><%= link_to "Back to recipes", recipes_path %></button>
+
+  
+</div>

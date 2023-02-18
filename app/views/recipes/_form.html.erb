@@ -1,0 +1,46 @@
+<%= form_with(model: recipe) do |form| %>
+  <% if recipe.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(recipe.errors.count, "error") %> prohibited this recipe from being saved:</h2>
+
+      <ul>
+        <% recipe.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class= "form", style: "max-width: 80%; margin: 0 auto;">
+    <h1>New recipe</h1>
+    <div class="form-group" style="margin-bottom: 20px;">
+      <%= form.text_field :name, :placeholder => placeholder="Name" %>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 20px;">
+      <%= form.text_area :description, :placeholder => placeholder="Description" %>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 20px;">
+      <%= form.number_field :prep_time, :placeholder => placeholder="Preparation Time (in minutes to the nearest whole number)" %>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 20px;">
+      <%= form.number_field :cook_time, :placeholder => placeholder="Cook Time (in minutes to the nearest whole number)" %>
+    </div>
+
+    <div class="rightSideRecipeList">
+      <span>Public </span>
+      <label class="switch">
+        <%= form.check_box :public %>
+        <span class="slider round"></span>
+      </label>
+    </div>
+
+    <div class="form-group" style="margin-bottom: 20px;">
+      <%= form.hidden_field :user_id, value: params[:user_id] %>
+    </div>
+    
+    <%= form.submit 'Submit', class: "btn btn-primary" %>
+  </div>
+<% end %>
