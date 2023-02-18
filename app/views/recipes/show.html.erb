@@ -19,7 +19,7 @@
     </div>
   </div>
   <div class="recipeListButtons">
-    <button class="backToRecipes" type="button">Generate shopping list</button>
+    <button class="backToRecipes" type="button"><%= link_to "Generate Shopping List", general_shopping_lists_path %></button>
     <button class="backToRecipes" type="button"><%= link_to "Add ingredient", new_recipe_recipe_food_path(recipe_id: params[:id]) %></button>
   </div>
   <hr class="horizonatalLine">

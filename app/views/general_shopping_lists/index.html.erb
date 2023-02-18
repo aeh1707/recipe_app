@@ -4,11 +4,11 @@
   <h1>Shopping List</h1>
   <div class="topBoxRecipeList">
     <div class="leftSideRecipeList">
-      <p>Amount of food items to buy: </p>
+      <p>Amount of food items to buy: <%= @missing_foods_price %> </p>
     </div>
 
     <div class="rightSideRecipeList">
-      <p>Total value of food needed: </p>
+      <p>Total value of food needed: <%= @missing_foods_count %> </p>
     </div>
   </div>
   
@@ -17,13 +17,16 @@
     <tr>
       <th>Food</th>
       <th>Quantity</th>
-      <th>Value</th>
-      <th>Actions</th>
+      <th>Price</th>
     </tr>
-    
-  </table>
-  
-  <button class="backToRecipes"><%= link_to "Back to recipes", recipes_path %></button>
 
-  
+    <% @recipe_missing_foods.each do |missing_food| %>
+      <tr>
+        <td><%= missing_food.name %></td>
+        <td><%= missing_food.quantity %> <%= missing_food.measurement_unit %></td>
+        <td><%= missing_food.price %></td>
+      </tr>
+    <% end %>
+  </table>
+  <button class="backToRecipes"><%= link_to "Back to recipes", recipes_path %></button>
 </div>
