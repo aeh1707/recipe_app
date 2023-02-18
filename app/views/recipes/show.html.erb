@@ -7,8 +7,8 @@
   <h1><%= @recipe.name %></h1>
   <div class="topBoxRecipeList">
     <div class="leftSideRecipeList">
-      <p>Preparation time (in minutes):<%= @recipe.prep_time %></p>
-      <p>Cooking time (in minutes):<%= @recipe.cook_time %></p> 
+      <p>Preparation time (in minutes): <%= @recipe.prep_time %></p>
+      <p>Cooking time (in minutes): <%= @recipe.cook_time %></p> 
     </div>
 
     <div class="rightSideRecipeList">
@@ -34,9 +34,14 @@
     <% @recipe_foods.each do |food| %>
       <tr>
         <td><%= food.food.name %></td>
-        <td><%= food.quantity %></td>
-        <td><%= food.food.measurement_unit %></td>
-        <td><%= button_to "Delete", recipe_food_path(food), method: :delete, class: "btn btn-danger" %></td>
+        <td><%= food.quantity %> <%= food.food.measurement_unit %></td>
+        <td><%= "$" + food.food.price.to_s %></td>
+        <td>
+        <div class="recipeshowButtons">
+          <button class="btn btn-primary">Modify</button>
+          <%= button_to "Delete", recipe_food_path(food), method: :delete, class: "btn btn-danger" %>
+        <div>
+        </td>
       </tr>
     <% end %>
   </table>

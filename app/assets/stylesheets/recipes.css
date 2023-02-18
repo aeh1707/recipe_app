@@ -170,3 +170,8 @@ th {
   justify-content: center;
   gap: 1rem;
 }
+
+.recipeshowButtons {
+  display: flex;
+  justify-content: space-evenly;
+}
