@@ -1,5 +1,8 @@
 <% @public_recipes.each do |recipe| %>
-  <div class="recipe">
+  <div class="recipe border">
     <h2><%= recipe.name %></h2>
+    <p>By <%= User.find(recipe.user_id).name %></p>
+    <p>Total food items: <%= recipe.foods.count %></p>
+    <p>Total price: <%= recipe.foods.sum { |food| food.quantity * food.price } %></p>
   </div>
 <% end %>
