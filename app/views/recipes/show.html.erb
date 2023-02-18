@@ -1,4 +1,5 @@
 <p style="color: green"><%= notice %></p>
+<%= flash[:success] %>
 
 <%= render @recipe %>
 
@@ -35,7 +36,7 @@
         <td><%= food.food.name %></td>
         <td><%= food.quantity %></td>
         <td><%= food.food.measurement_unit %></td>
-        <td><button type="button">REMOVE</button></td>
+        <td><%= button_to "Delete", recipe_food_path(food), method: :delete, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </table>
